@@ -34,11 +34,9 @@ class App extends Component {
             <Switch>
               <Route path="/" component={Main} exact />
               <Route path="/product" component={ProductPages} />
-              <Route path="/register">
-                <Register onRegister={this.handleRegister} />
-              </Route>
+              <Route path="/register" component={Register}/>
               <Route path="/login" component={Login} />
-              {isRegistered && <Route path="/member-center" component={MemberCenter} />} {/* 会员中心路由 */}
+              <Route path="/member-center" component={MemberCenter} /> {/* 会员中心路由 */}
             </Switch>
           </div>
         </BrowserRouter>
