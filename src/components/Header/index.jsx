@@ -27,7 +27,7 @@ const Header = () => {
         setMessage(res.data.Error);
       }
     })
-    .then(err =>console.log(err));
+    .then(err =>console.log());
   },[])
   //觸發漢堡選單按鈕
   const toggleMenu = () => {
