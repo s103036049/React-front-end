@@ -13,20 +13,7 @@ import MemberCenter from './components/MemberCenter'
 
 
 class App extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isRegistered: false
-      };
-    }
-  
-    handleRegister = () => {
-      // 处理注册完成后的逻辑，比如设置注册状态为 true
-      this.setState({ isRegistered: true });
-    };
-  
     render() {
-      const { isRegistered } = this.state;
   
       return (
         <BrowserRouter>
