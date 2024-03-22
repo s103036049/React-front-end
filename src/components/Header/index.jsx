@@ -1,10 +1,14 @@
 // App.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
+  const cart = useSelector(state => state.cart)
+
   // 漢堡選單重複使用按鈕初始化狀態
   const [isMenuOpen, setMenuOpen] = useState(false);
   //登出按鈕初始化狀態
@@ -106,6 +110,11 @@ return (
     </div>
   }
       
+
+        <li className="nav-item">
+        <Link to="/cart" className="nav-link" style={{textDecoration:'none',color:'red'}} >
+          購物車<strong>{cart.cart.length}</strong></Link>
+        </li>
       </ul>
     </div>
 

@@ -20,10 +20,11 @@ class Main extends Component {
                 <div data-aos="fade-up" data-aos-duration="3000">
                     <img src={'/images/mainbig.jpeg'} style={{ height: "500px" }} alt='dogPicture' />
                     
-                    <p className="p5=p-5" >
                         <h1>
                         全心犬意，打造幸福心關係
                         </h1>
+                        <p className="p5=p-5" >
+
                         用愛、同理心，和你一起改善狗狗行為問題<br />
                         已成功協助超過 800 位家長跟毛小孩<br />
                         透過行為調整，與狗狗一起迎接美好的生活<br />
@@ -130,9 +131,9 @@ class Main extends Component {
             </div>
             </section> */}
 
-        <div className="fixed-bottom mb-4   " type="button">
+        {/* <div className="fixed-bottom mb-4   " type="button">
             <button onclick="topFunction()" id="scrollTopButton" title="返回頂部" className="bg-info ">^</button>
-        </div>
+        </div> */}
 
 
 

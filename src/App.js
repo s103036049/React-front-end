@@ -9,6 +9,7 @@ import ProductPages from './components/ProductPages';
 import Register from './components/Register';
 import Login from './components/Login';
 import MemberCenter from './components/MemberCenter'
+import Cart from './components/Cart'
 
 
 
@@ -23,7 +24,9 @@ class App extends Component {
               <Route path="/product" component={ProductPages} />
               <Route path="/register" component={Register}/>
               <Route path="/login" component={Login} />
-              <Route path="/member-center" component={MemberCenter} /> {/* 会员中心路由 */}
+              <Route path="/member-center" component={MemberCenter} /> 
+              <Route path="/cart" component={Cart} /> 
+
             </Switch>
           </div>
         </BrowserRouter>
