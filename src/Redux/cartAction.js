@@ -15,3 +15,12 @@ export function removefromcart(id){
         id:id,
     }
 }
+
+// action.js
+// export const setSessionId = (sessionId) => {
+//     return {
+//       type: 'SET_SESSION_ID',
+//       payload: sessionId
+//     };
+//   };
+  

@@ -1,5 +1,6 @@
 const initialState = {
-    cart:[]
+    cart:[],
+    sessionId: null
 }
 
 export const getTotal = (cart) =>{
@@ -9,6 +10,17 @@ export const getTotal = (cart) =>{
 }
 
 
+// export const sessionReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//       case 'SET_SESSION_ID':
+//         return {
+//           ...state,
+//           sessionId: action.payload
+//         };
+//       default:
+//         return state;
+//     }
+//   };
 
 
 
@@ -38,3 +50,5 @@ export function cartReducer(state = initialState, action){
 }
 
 export default cartReducer
+
+  

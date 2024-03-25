@@ -1,0 +1,76 @@
+.cart-page {
+    padding: 50px 0;
+}
+
+.cart-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-items th,
+.cart-items td {
+    padding: 15px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.cart-items tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.cart-items tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+.cart-items img {
+    height: auto;
+    width: 100%;
+}
+
+.right {
+    float: right;
+}
+
+.subtotal-wrapper {
+    margin: 20px 0;
+}
+
+.coupon-inner {
+    display: flex;
+    align-items: center;
+}
+
+.coupon-inner input {
+    flex: 1;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 0 15px;
+}
+
+.coupon-inner button {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+    border: none;
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.coupon-inner button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px #ddd;
+}
+
+.apply-btn {
+    margin-left: 15px;
+}
+
+.subtotal-wrap span {
+    font-size: 18px;
+    font-weight: bold;
+}

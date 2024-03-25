@@ -61,15 +61,19 @@ return (
         <form  onSubmit={handleSubmit}  className="was-validated">
           <div className="mb-3 mt-3 ">
             <label htmlFor="email" className="form-label">會員帳號:</label>
-            <input type="text" className="form-control " id="email" placeholder="請輸入會員帳號" name="email" 
-            onChange={e => setValues({...values, email: e.target.value })} 
-            required/>
+            <input type="text" className="form-control" id="email" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$" 
+            title="至少6個字符，必須包含至少1個字母和1個數字。"  placeholder="請輸入會員帳號" name="email" 
+              onChange={e => setValues({...values, email: e.target.value })} 
+              required/>
             <div className="valid-feedback">通過</div>
             <div className="invalid-feedback">請填寫此區塊</div>
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">會員密碼:</label>
-            <input type="password" className="form-control" id="password" placeholder="請輸入會員密碼" name="password" 
+            <input type="password" className="form-control" id="password" 
+            pattern="^(?=.*[a-zA-Z])(?=.*\d).{6,}$"
+            placeholder="請輸入會員密碼" name="password" 
+            title="至少6個字符，必須包含至少1個字母和1個數字。"
             onChange={e => setValues({...values, password: e.target.value })} 
             required/>
             <div className="valid-feedback">通過</div>
@@ -78,19 +82,19 @@ return (
 
           <div className="mb-3 mt-3 ">
             <label htmlFor="name" className="form-label">會員姓名:</label>
-            <input type="text" className="form-control " id="name" placeholder="請輸入會員姓名" name="name" 
+            <input type="text" className="form-control " id="name" 
+            pattern="[a-zA-Z\u4e00-\u9fa5]+" 
+            title="姓名只能包含中英文字母"
+
+            placeholder="請輸入會員姓名" 
+            name="name" 
             onChange={e => setValues({...values, name: e.target.value })} 
             required/>
             <div className="valid-feedback">通過</div>
             <div className="invalid-feedback">請填寫此區塊</div>
           </div>
 
-          {/* <div className="form-check mb-3">
-            <input className="form-check-input" type="checkbox" id="myCheck" name="remember" required/>
-            <label className="form-check-label" htmlFor="myCheck">保持登入</label>
-            <div className="valid-feedback">通過</div>
-            <div className="invalid-feedback"></div>
-          </div> */}
+       
           
           <button type="submit" className="btn btn-primary">註冊</button>
           <br /><br /><br />

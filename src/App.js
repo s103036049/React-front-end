@@ -10,7 +10,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import MemberCenter from './components/MemberCenter'
 import Cart from './components/Cart'
-
+import Checkout from './components/Checkout';
 
 
 class App extends Component {
@@ -26,6 +26,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/member-center" component={MemberCenter} /> 
               <Route path="/cart" component={Cart} /> 
+              <Route path="/checkout" component={Checkout} /> 
 
             </Switch>
           </div>

@@ -1,7 +1,11 @@
 import React, { Component ,useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie'; // 引入 js-cookie
+
+
 import {useDispatch} from 'react-redux'
 import { addtocart } from '../../Redux/cartAction';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,6 +19,8 @@ const Product = () => {
     // 定义 dispatchAction 函数，用于处理购买按钮点击事件
     const dispatch = useDispatch()
 
+    const token = Cookies.get('TOKEN'); // 从 cookie 获取 TOKEN
+    
     // 使用 useEffect 处理组件挂载后的副作用，从后端获取数据
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +34,17 @@ const Product = () => {
 
         fetchData(); // 调用 fetchData 函数
     }, []); // 空数组作为第二个参数，表示仅在组件挂载时调用
+
+
+    const handleAddToCart = (product) => {
+        if (token) {
+            dispatch(addtocart({...product}));
+        } else {
+            alert('请先登录！');
+        }
+    };
+
+
 
     return (
         <div>
@@ -57,27 +74,38 @@ const Product = () => {
                 </div>
             </section>
 
-            <div className='text-center'>
-                服務流程全透明<br />
+            <div className="d-flex justify-content-center align-items-center bg-light" style={{ minHeight: '100px' }}>
+                <h2>
+                    <em>
+                    服務流程全透明<br />
                 課程常見問題
+
+                    </em>
+                </h2>
+              
             </div>
 
-            <div className="container">
+            <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100px' }}>
                 <div className="row">
                     {productList.map((product) => (
                         <div className="col-md-4 mb-4" key={product.id}>
-                            <div className="card text-center">
+                            <div className="card  bg-info text-center">
                                 <h1>{product.title}</h1>
                                 <div><h2>${product.price}</h2></div>
                                 <div className="card-body">
                                     <p className="card-text">{product.content}</p>
-                                    <button color="secondary"
+
+                                    <button className="btn btn-primary my-custom-hover" type="button"
                                     
                                     onClick={()=> 
                                     dispatch(addtocart({...product}))}>
 
-                                        購買
+                                    立刻加入預約
+
                                     </button>
+
+
+
                                 </div>
                             </div>
                         </div>

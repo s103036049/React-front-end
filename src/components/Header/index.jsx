@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
+import '../Header/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Header = () => {
   const cart = useSelector(state => state.cart)
@@ -55,7 +57,9 @@ const handleDelete =() =>{
 return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light text-align-center">
   <div className="container">
-    <img src={'/images/LogoMakr.png'} alt="Logo" className="navbar-brand" />
+  <Link to="/">
+  <img src={'/images/LogoMakr.png'} alt="Logo" className="navbar-brand img-fluid" />
+  </Link>
     {/* <a className="navbar-brand" href="/">
       Your Logo
     </a> */}
@@ -81,6 +85,10 @@ return (
         </li>
         <li className="nav-item">
           <Link to="/product" className="nav-link">課程介紹</Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/checkout" className="nav-link">結帳</Link>
         </li>
     
     {auth?
