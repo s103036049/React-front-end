@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component ,useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+
+
 import SubTotal from '../SubTotal';
 import { useDispatch } from 'react-redux';
 import { removefromcart } from '../../Redux/cartAction';
@@ -9,8 +12,26 @@ import Footer from '../Footer';
 import "./Cart.css";
 
 function Cart () {
+    const [productList, setProductList] = useState([]);
+
     const dispatch = useDispatch();
+
     const cart = useSelector(state => state.cart);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await axios.get('http://localhost:8081/cart');
+                setProductList(result.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData(); // 调用 fetchData 函数
+    }, []); // 空数组作为第二个参数，表示仅在组件挂载时调用
+
+
 
     return (
         <div className="cart-page container">

@@ -1,6 +1,8 @@
 import React, { Component ,useState, useEffect } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie'; // 引入 js-cookie
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 import {useDispatch} from 'react-redux'
@@ -19,7 +21,6 @@ const Product = () => {
     // 定义 dispatchAction 函数，用于处理购买按钮点击事件
     const dispatch = useDispatch()
 
-    const token = Cookies.get('TOKEN'); // 从 cookie 获取 TOKEN
     
     // 使用 useEffect 处理组件挂载后的副作用，从后端获取数据
     useEffect(() => {
@@ -35,14 +36,41 @@ const Product = () => {
         fetchData(); // 调用 fetchData 函数
     }, []); // 空数组作为第二个参数，表示仅在组件挂载时调用
 
+    const[auth,setAuth] = useState(false);
+    //會員姓名判斷初始化
+    const [name,setName] = useState('');
+     //判斷登入初始化狀態
+     const [message, setMessage] =useState('');
+    //預設axios的認證
+    axios.defaults.withCredentials = true; 
+    //驗證身分
+    useEffect(() =>{
+      axios.get('http://localhost:8081')
+      .then(res =>{
+        if(res.data.Status === 'Success'){
+          setAuth(true);
+          setName(res.data.name);
+        }else{
+          setAuth(false);
+          setMessage(res.data.Error);
+        }
+      })
+      .then(err =>console.log());
+    },[])
+  
+    //定義把產品加入購物車 下面2個都可以成功
+    // onClick={()=>dispatch(addtocart({...product}))}
+    //const handleAddToCart = (product) => dispatch(addtocart(product))
 
     const handleAddToCart = (product) => {
-        if (token) {
-            dispatch(addtocart({...product}));
-        } else {
-            alert('请先登录！');
-        }
+      if (auth) {
+        dispatch(addtocart(product));
+        toast.success('商品已添加到購物車！');
+      } else {
+        toast.error('請先登入！');
+      }
     };
+    
 
 
 
@@ -97,15 +125,10 @@ const Product = () => {
 
                                     <button className="btn btn-primary my-custom-hover" type="button"
                                     
-                                    onClick={()=> 
-                                    dispatch(addtocart({...product}))}>
-
+                                    onClick={() => handleAddToCart(product)}>
                                     立刻加入預約
 
                                     </button>
-
-
-
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Header from './components/Header';
@@ -19,6 +22,8 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
+          <ToastContainer />
+
             <Switch>
               <Route path="/" component={Main} exact />
               <Route path="/product" component={ProductPages} />

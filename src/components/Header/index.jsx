@@ -13,11 +13,14 @@ const Header = () => {
 
   // 漢堡選單重複使用按鈕初始化狀態
   const [isMenuOpen, setMenuOpen] = useState(false);
-  //登出按鈕初始化狀態
+
+  //認證初始化狀態
   const[auth,setAuth] = useState(false);
-  //登入按鈕初始化狀態
+
+  //判斷登入初始化狀態
   const [message, setMessage] =useState('');
 
+  //會員姓名判斷初始化
   const [name,setName] = useState('');
   //預設axios的認證
   axios.defaults.withCredentials = true; 
@@ -35,6 +38,7 @@ const Header = () => {
     })
     .then(err =>console.log());
   },[])
+
   //觸發漢堡選單按鈕
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -87,9 +91,6 @@ return (
           <Link to="/product" className="nav-link">課程介紹</Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/checkout" className="nav-link">結帳</Link>
-        </li>
     
     {auth?
     <div className='d-flex'>
@@ -102,6 +103,10 @@ return (
       >
         登出
       </button>
+      <li className="nav-item">
+          <Link to="/checkout" className="nav-link">結帳</Link>
+        </li>
+
     </div>
     :
     <div className='d-flex'>

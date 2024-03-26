@@ -1,4 +1,4 @@
-export function addtocart({...product}){
+export function addtocart(product){
     return{
         type: "Add_Item_To_Cart",
         item:{
@@ -16,11 +16,4 @@ export function removefromcart(id){
     }
 }
 
-// action.js
-// export const setSessionId = (sessionId) => {
-//     return {
-//       type: 'SET_SESSION_ID',
-//       payload: sessionId
-//     };
-//   };
   
