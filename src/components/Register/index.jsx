@@ -1,11 +1,14 @@
 import React, { Component ,useState   } from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from '../Header';
 import Footer from '../Footer';
+const backgroundImage = `${process.env.PUBLIC_URL}/images/mainbig.jpeg`;
 
 
  function Register() {
@@ -24,7 +27,7 @@ const handleSubmit = (e) => {
     axios.post('http://localhost:8081/register', values)
     .then(res => {
       if (res.data.Status === "Success") {
-        alert('註冊成功!');
+        toast.success('註冊成功!', { autoClose: 1500 }); // 設定顯示時間為 1.5 秒
     // 延遲 1 秒後自動跳轉到登入頁
     setTimeout(() => {
       window.location = "/login";
@@ -39,7 +42,7 @@ const handleSubmit = (e) => {
     })//end of .then()
     .catch(error => {
       console.error('Registration failed:', error);
-      alert('註冊失敗');
+      toast.warning('註冊失敗!', { autoClose: 2000 });
     })//end of .catch
 
   };
@@ -51,7 +54,7 @@ return (
   <div>
   <Header />
 
-  <div className="container mt-5" id="點擊跳轉4">
+  <div className="container mt-5" >
     <div className="row justify-content-center">
 
       <div className="col-md-6">
@@ -61,8 +64,10 @@ return (
         <form  onSubmit={handleSubmit}  className="was-validated">
           <div className="mb-3 mt-3 ">
             <label htmlFor="email" className="form-label">會員帳號:</label>
-            <input type="text" className="form-control" id="email" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$" 
-            title="至少6個字符，必須包含至少1個字母和1個數字。"  placeholder="請輸入會員帳號" name="email" 
+            <input type="text" className="form-control" id="email" 
+            pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$" 
+            title="至少6個字符，必須包含至少1個字母和1個數字。"  
+            placeholder="請輸入會員帳號" name="email" 
               onChange={e => setValues({...values, email: e.target.value })} 
               required/>
             <div className="valid-feedback">通過</div>
@@ -93,8 +98,6 @@ return (
             <div className="valid-feedback">通過</div>
             <div className="invalid-feedback">請填寫此區塊</div>
           </div>
-
-       
           
           <button type="submit" className="btn btn-primary">註冊</button>
           <br /><br /><br />
@@ -104,7 +107,6 @@ return (
 
     </div>
   </div>
-
 
   <Footer />
   </div>

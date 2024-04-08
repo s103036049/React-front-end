@@ -16,4 +16,8 @@ export function removefromcart(id){
     }
 }
 
+export const clearCart = () => ({
+    type: 'CLEAR_CART',
+  });
+  
   

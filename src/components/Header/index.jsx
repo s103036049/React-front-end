@@ -1,7 +1,10 @@
-// App.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaCartShopping } from "react-icons/fa6";
+
 
 import axios from 'axios';
 import '../Header/index.css'
@@ -48,27 +51,24 @@ const Header = () => {
 const handleDelete =() =>{
   axios.get('http://localhost:8081/logout')
   .then(res =>{
-    alert('登出成功!')
+    toast.success('登出成功!', { autoClose: 1500 }); // 設定顯示時間為 1.5 秒
   // 延遲 1 秒後自動跳轉到首頁
   setTimeout(() => {
     window.location.reload(true);
     window.location = "/"
-  }, 1000);
+  }, 2000);
 
   }).catch(err =>console.log(err));
 }
 
 return (
-<nav className="navbar navbar-expand-lg navbar-light bg-light text-align-center">
+<nav className="navbar navbar-expand-lg navbar-light text-align-center mx-auto sticky-top navbar-blur">
   <div className="container">
-  <Link to="/">
-  <img src={'/images/LogoMakr.png'} alt="Logo" className="navbar-brand img-fluid" />
-  </Link>
-    {/* <a className="navbar-brand" href="/">
-      Your Logo
-    </a> */}
+    <Link to="/" className="navbar-brand">
+      <img src={'/images/LogoMakr.png'} alt="Logo" className="img-fluid img-cropped" />
+    </Link>
 
-    {/* 漢堡選單按鈕 */}
+    {/* 漢堡按鈕觸發圖示 */}
     <button
       className="navbar-toggler"
       type="button"
@@ -91,48 +91,53 @@ return (
           <Link to="/product" className="nav-link">課程介紹</Link>
         </li>
 
-    
-    {auth?
-    <div className='d-flex'>
-      <li className="nav-item">
-        <Link to="/member-center" className="nav-link">你好-{name}</Link>
-      </li>
-      {/* <h3>you are Authorized ---{name}</h3>   */}
-      <button className='btn btn-danger ' 
-      onClick={handleDelete}
-      >
-        登出
-      </button>
-      <li className="nav-item">
-          <Link to="/checkout" className="nav-link">結帳</Link>
-        </li>
-
-    </div>
-    :
-    <div className='d-flex'>
-  {/* <h3> {message}</h3>   */}
-  <li className="nav-item">
-    <Link to="/login" className="nav-link">會員登入</Link>
-  </li>
-        
-  <li className="nav-item">
-    <Link to="/register" className="nav-link">會員註冊</Link>
-  </li>
-
-  {/* <button className='btn btn-primary'>login</button> */}
-    </div>
-  }
-      
-
+        {/* 驗證用戶是否登入時會顯示不同組件 */}
+        {auth ? (
+          <>
+            <li className="nav-item dropdown bg-info rounded">
+              <a
+                className="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                你好-{name}
+              </a>
+              <div className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                <Link to="/member-center" className="dropdown-item">會員中心</Link>
+                <Link to="/checkout" className="dropdown-item">結帳</Link>
+                <Link to="/orderfinal" className="dropdown-item">預約確認</Link>
+                {/* 其他選項 */}
+              </div>
+            </li>
+            <li className="nav-item">
+              <button className='btn btn-danger' onClick={handleDelete}>
+                登出
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">會員登入</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">會員註冊</Link>
+            </li>
+          </>
+        )}
         <li className="nav-item">
-        <Link to="/cart" className="nav-link" style={{textDecoration:'none',color:'red'}} >
-          購物車<strong>{cart.cart.length}</strong></Link>
+          <Link to="/cart" className="nav-link" style={{ textDecoration: 'none', color: 'red' }}>
+            <FaCartShopping /><strong>{cart.cart.length}</strong>
+          </Link>
         </li>
       </ul>
     </div>
-
   </div>
-</nav>  
+</nav>
   );
 };
 

@@ -12,6 +12,7 @@
     padding: 15px;
     vertical-align: top;
     border-top: 1px solid #ddd;
+    display: fluid;
 }
 
 .cart-items tr:hover {

@@ -2,6 +2,9 @@ import React, { Component,useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -25,14 +28,14 @@ const handleSubmit = (e) => {
   axios.post('http://localhost:8081/login', values)
   .then(res => {
     if (res.data.Status === "Success") {
-      alert('登入成功!');
+      toast.success('登入成功!', { autoClose: 1500 }); // 設定顯示時間為 1.5 秒
   // 延遲 1 秒後自動跳轉到首頁
   setTimeout(() => {
     window.location = "/";
-  }, 1000);
+  }, 2000);
 
     } else if (res.data.hasOwnProperty('Error')) {
-        alert(res.data.Error);
+      toast.warning(res.data.Error, { autoClose: 2000 });
     }else {
         alert('Unknown error occurred');
     }
@@ -40,7 +43,7 @@ const handleSubmit = (e) => {
   })//end of .then
   .catch(error => {
     // console.error('login failed:', error);
-    alert('登入失敗');
+    toast.warning('登入失敗!', { autoClose: 2000 });
   })//end of .catch
 
 };//end of 登入按鈕功能
@@ -49,7 +52,7 @@ const handleSubmit = (e) => {
   <div>
   <Header />
 
-  <div className="container mt-5" id="點擊跳轉4">
+  <div className="container mt-5" >
     <div className="row justify-content-center">
 
     <div className="col-md-6">

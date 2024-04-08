@@ -28,6 +28,8 @@ export function cartReducer(state = initialState, action){
               ...state,
                 cart:newCart
             }
+            case 'CLEAR_CART':
+                return { ...state, cart: [] }; // 清空購物車
         default:
             return state
     }

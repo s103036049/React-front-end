@@ -8,3 +8,31 @@
 .navbar-brand img{
   width:'100%'
 }
+
+.navbar-blur {
+  background-color: rgba(221, 223, 228, 0.8); /* 調整透明度 */
+  backdrop-filter: blur(10px); /* 調整模糊程度 */
+}
+
+/* 在大於或等於中等裝置寬度時，滑鼠懸停展開下拉選單 */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    display: none; /* 預設不顯示下拉選單 */
+  }
+
+  .dropdown:hover>.dropdown-toggle::after {
+    transform: rotate(180deg); /* 當滑鼠懸停時旋轉箭頭 */
+  }
+}
+
+.img-cropped {
+  width: 100%; /* 或者設置為特定寬度 */
+  height: 100px; /* 設置為您想要的高度 */
+  object-fit: cover;
+  object-position: center; /* 可以調整為 'top', 'bottom', 'center', 等 */
+}
+

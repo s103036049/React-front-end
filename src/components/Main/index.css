@@ -21,3 +21,10 @@
 .carousel-control-next-icon {
   background-color: rgba(0, 0, 0, 0.5); /* 添加半透明的黑色背景 */
 }
+
+.img-height {
+  width: 100%; /* 或者設置為特定寬度 */
+  height: 300px; /* 設置為您想要的高度 */
+  object-fit: cover;
+  object-position: center; /* 可以調整為 'top', 'bottom', 'center', 等 */
+}
